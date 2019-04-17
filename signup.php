@@ -5,6 +5,9 @@ require "Database.php";
 $table="categories";
 $database=new Database("", "root", "");
 $connection=mysqli_connect("localhost", "root", "", "registration");
+if(!empty($_SESSION)){
+    header("location:index.php");
+}
 ?>
 <html>
     <head>

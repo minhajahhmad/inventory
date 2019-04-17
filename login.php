@@ -5,6 +5,9 @@ require "Database.php";
 $table="categories";
 $database=new Database("", "root", "");
 $connection=mysqli_connect("localhost", "root", "", "registration");
+if(!empty($_SESSION)){
+    header("location:index.php");
+}
 ?>
 
 <html>
@@ -33,7 +36,7 @@ $connection=mysqli_connect("localhost", "root", "", "registration");
 if(!empty($_POST['name']) && !empty($_POST['password'])):
     $query="SELECT * FROM users WHERE name='".$_POST['name']. "' AND password ='".$_POST['password']."'";
     $arg= mysqli_query($connection, $query)or die(mysqli_error($connection));
-   $obje=$arg->fetch_object();
+   $obj=$arg->fetch_object();
    $result=count($obj)==1 ?1:0;
 if($result>0){
     $_SESSION['auth']=true;
